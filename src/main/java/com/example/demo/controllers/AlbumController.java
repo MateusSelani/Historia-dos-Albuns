@@ -24,8 +24,8 @@ public class AlbumController {
 	@Autowired
 	AlbumService as;
 	
-	@GetMapping
 	@ResponseBody
+	@GetMapping
 	public List<Album> listarAlbuns() {
 		return as.listarTodos();
 	}
@@ -44,7 +44,7 @@ public class AlbumController {
 	
 	@ResponseBody
 	@PutMapping
-	public Album alterarAlbum(@RequestBody UUID idAlbum, Album novoAlbum) {
+	public Album alterarAlbum(@RequestBody UUID idAlbum ,@RequestBody Album novoAlbum) {
 		return as.alterar(idAlbum, novoAlbum);
 	}
 	
