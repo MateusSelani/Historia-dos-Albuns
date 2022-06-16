@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,26 +30,26 @@ public class AlbumController {
 		return as.listarTodos();
 	}
 	
-	@GetMapping
 	@ResponseBody
+	@GetMapping("/{id}")
 	public Album listarAlbumId(@PathVariable UUID idAlbum) {
 		return as.listarUnico(idAlbum);
 	}
 	
-	@PostMapping
 	@ResponseBody
-	public Album salvarAlbum(@PathVariable Album novoAlbum) {
+	@PostMapping
+	public Album salvarAlbum(@RequestBody Album novoAlbum) {
 		return as.salvar(novoAlbum);
 	}
 	
-	@PutMapping
 	@ResponseBody
-	public Album alterarAlbum(@PathVariable UUID idAlbum, Album novoAlbum) {
+	@PutMapping
+	public Album alterarAlbum(@RequestBody UUID idAlbum, Album novoAlbum) {
 		return as.alterar(idAlbum, novoAlbum);
 	}
 	
-	@DeleteMapping
 	@ResponseBody
+	@DeleteMapping("/{id}")
 	public String deletarAlbum(@PathVariable UUID idAlbum) {
 		as.deletar(idAlbum);
 		return "Album: " + idAlbum + " Deletado!";
