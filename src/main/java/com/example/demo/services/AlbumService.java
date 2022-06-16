@@ -31,11 +31,12 @@ public class AlbumService {
 		Album albumAntigo = listarUnico(id);
 		alterado.setIdAlbum(albumAntigo.getIdAlbum());
 		albumAntigo = alterado;
-		return alterado;
+		return salvar(albumAntigo);
 	}
 	
 	public void deletar(UUID id) {
-		ar.deleteById(id);
+		 Album album = listarUnico(id);
+		ar.delete(album);
 	}
 
 }

@@ -31,7 +31,7 @@ public class AlbumController {
 	}
 	
 	@ResponseBody
-	@GetMapping("/{id}")
+	@GetMapping("/{idAlbum}")
 	public Album listarAlbumId(@PathVariable UUID idAlbum) {
 		return as.listarUnico(idAlbum);
 	}
@@ -43,13 +43,13 @@ public class AlbumController {
 	}
 	
 	@ResponseBody
-	@PutMapping
-	public Album alterarAlbum(@RequestBody UUID idAlbum ,@RequestBody Album novoAlbum) {
+	@PutMapping("/{idAlbum}")
+	public Album alterarAlbum(@PathVariable UUID idAlbum ,@RequestBody Album novoAlbum) {
 		return as.alterar(idAlbum, novoAlbum);
 	}
 	
 	@ResponseBody
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{idAlbum}")
 	public String deletarAlbum(@PathVariable UUID idAlbum) {
 		as.deletar(idAlbum);
 		return "Album: " + idAlbum + " Deletado!";
