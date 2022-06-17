@@ -33,6 +33,6 @@ public class Artista {
 	private String funcao;
 	
 	@Column(length = 100)
-	private String nacionalidadeArtista;
+	private String paisArtista;
 	
 }

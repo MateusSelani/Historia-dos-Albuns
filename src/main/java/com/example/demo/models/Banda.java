@@ -21,12 +21,12 @@ public class Banda {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private UUID idbanda;
+	private UUID idBanda;
 	
 	@Column(length = 100)
 	private String nomeBanda;
 	
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date datafundacao;
+	private Date dataFundacao;
 	
 }
