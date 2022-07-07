@@ -1,6 +1,8 @@
 package com.example.demo.models;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -8,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -29,4 +34,9 @@ public class Banda {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dataFundacao;
 	
+	@OneToMany
+	@JoinTable(name="banda_album",joinColumns = @JoinColumn(name="id_banda"), 
+		     inverseJoinColumns= @JoinColumn(name="id_album")
+	)
+	private List<Album> album = new ArrayList<Album>() ;
 }

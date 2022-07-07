@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.models.Album;
 import com.example.demo.models.Banda;
+import com.example.demo.services.AlbumService;
 import com.example.demo.services.BandaService;
 
 @RestController
@@ -53,6 +55,18 @@ public class BandaController {
 	public String deletarBanda(@PathVariable UUID idBanda) {
 		bs.deletar(idBanda);
 		return "Banda: " + idBanda + " Deletada!";
+	}
+	
+	@Autowired
+	AlbumService as;
+	
+	@ResponseBody
+	@PostMapping("add/{idBanda}")
+	public Banda teste(@PathVariable UUID idBanda, @RequestBody Album album) {
+		Banda banda = listarBandaId(idBanda);
+		banda.getAlbum().add(as.listarUnico(album.getIdAlbum()));
+		bs.salvar(banda);
+		return banda;
 	}
 
 }
