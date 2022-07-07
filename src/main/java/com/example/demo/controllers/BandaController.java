@@ -62,7 +62,7 @@ public class BandaController {
 	
 	@ResponseBody
 	@PostMapping("add/{idBanda}")
-	public Banda teste(@PathVariable UUID idBanda, @RequestBody Album album) {
+	public Banda addBandaAlbum(@PathVariable UUID idBanda, @RequestBody Album album) {
 		Banda banda = listarBandaId(idBanda);
 		banda.getAlbum().add(as.listarUnico(album.getIdAlbum()));
 		bs.salvar(banda);
