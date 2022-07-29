@@ -11,11 +11,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
@@ -23,7 +24,7 @@ import lombok.Data;
 @Data
 @Table(name = "banda")
 public class Banda {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID idBanda;
@@ -35,8 +36,7 @@ public class Banda {
 	private Date dataFundacao;
 	
 	@OneToMany
-	@JoinTable(name="banda_album",joinColumns = @JoinColumn(name="id_banda"), 
-		     inverseJoinColumns= @JoinColumn(name="id_album")
-	)
-	private List<Album> album = new ArrayList<Album>() ;
+	@JoinColumn(name = "id_banda")
+	@JsonManagedReference
+	private List<Album> album = new ArrayList<Album>();
 }

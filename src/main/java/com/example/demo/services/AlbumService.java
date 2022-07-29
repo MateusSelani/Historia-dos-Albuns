@@ -35,7 +35,7 @@ public class AlbumService {
 	}
 	
 	public void deletar(UUID id) {
-		 Album album = listarUnico(id);
+		Album album = listarUnico(id);
 		ar.delete(album);
 	}
 
