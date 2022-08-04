@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.models.Banda;
-import com.example.demo.services.AlbumService;
 import com.example.demo.services.BandaService;
 
 @RestController
@@ -24,9 +23,6 @@ public class BandaController {
 	
 	@Autowired
 	BandaService bs;
-	
-	@Autowired
-	AlbumService as;
 	
 	@ResponseBody
 	@GetMapping
