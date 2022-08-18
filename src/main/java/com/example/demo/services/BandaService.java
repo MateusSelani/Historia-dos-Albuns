@@ -2,10 +2,12 @@ package com.example.demo.services;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.BandaDTO;
 import com.example.demo.models.Banda;
 import com.example.demo.repositories.IBandaRepository;
 
@@ -15,8 +17,10 @@ public class BandaService {
 	@Autowired
 	IBandaRepository br;
 	
-	public List<Banda> listarTodos() {
-		return br.findAll();
+	public List<BandaDTO> listarTodos() {
+		List<Banda> banda = br.findAll();
+		List<BandaDTO> dto = banda.stream().map(obj -> new BandaDTO(obj)).collect(Collectors.toList());
+		return dto;
 	}
 	
 	public Banda listarUnico(UUID id) {

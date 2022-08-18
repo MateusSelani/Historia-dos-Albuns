@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.ArtistaDTO;
 import com.example.demo.models.Artista;
 import com.example.demo.services.ArtistaService;
 
@@ -26,7 +27,7 @@ public class ArtistaController {
 	
 	@ResponseBody
 	@GetMapping
-	public List<Artista> listarArtistas(){
+	public List<ArtistaDTO> listarArtistas(){
 		return arts.listarTodos();
 	}
 	

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.AlbumDTO;
 import com.example.demo.models.Album;
 import com.example.demo.services.AlbumService;
 
@@ -26,7 +27,7 @@ public class AlbumController {
 	
 	@ResponseBody
 	@GetMapping
-	public List<Album> listarAlbuns() {
+	public List<AlbumDTO> listarAlbuns() {
 		return as.listarTodos();
 	}
 	

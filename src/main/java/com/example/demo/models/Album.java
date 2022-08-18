@@ -14,8 +14,6 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import lombok.Data;
 
 @Entity
@@ -40,7 +38,7 @@ public class Album {
 	
 	@ManyToOne(targetEntity = Banda.class)
 	@JoinColumn(name = "id_banda")
-	@JsonBackReference
+//	@JsonBackReference
 	private Banda banda;
 
 }
