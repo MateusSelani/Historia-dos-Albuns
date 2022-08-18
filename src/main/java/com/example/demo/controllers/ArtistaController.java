@@ -33,19 +33,19 @@ public class ArtistaController {
 	
 	@ResponseBody
 	@GetMapping("/{idArtista}")
-	public Artista listarArtista(@PathVariable UUID idArtista) {
+	public ArtistaDTO listarArtista(@PathVariable UUID idArtista) {
 		return arts.listarPorId(idArtista);
 	}
 	
 	@ResponseBody
 	@PostMapping
-	public Artista salvarArtista(@RequestBody Artista artista) {
+	public ArtistaDTO salvarArtista(@RequestBody Artista artista) {
 		return arts.salvar(artista);
 	}
 	
 	@ResponseBody
 	@PutMapping("/{idArtista}")
-	public Artista alterarArtista(@PathVariable UUID idArtista, @RequestBody Artista artista) {
+	public ArtistaDTO alterarArtista(@PathVariable UUID idArtista, @RequestBody Artista artista) {
 		return arts.alterar(idArtista, artista);
 	}
 	

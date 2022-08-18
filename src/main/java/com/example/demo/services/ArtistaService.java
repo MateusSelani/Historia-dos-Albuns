@@ -2,7 +2,6 @@ package com.example.demo.services;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,28 +17,30 @@ public class ArtistaService {
 	IArtistaRepository artr;
 	
 	public List<ArtistaDTO> listarTodos(){
-		List<Artista> artista = artr.findAll();
-		List<ArtistaDTO> dto = artista.stream().map(obj -> new ArtistaDTO(obj)).collect(Collectors.toList());
-		return dto;
+		List<Artista> artistas = artr.findAll();
+		return ArtistaDTO.conversorArtistaDto(artistas);
 	}
 	
-	public Artista listarPorId(UUID id){
-		return artr.findById(id).get();
+	public ArtistaDTO listarPorId(UUID id){
+		Artista artista = artr.findById(id).get();
+		return ArtistaDTO.conversorArtistaDto(artista);
 	}
 	
-	public Artista salvar(Artista artista){
-		return artr.save(artista);
+	public ArtistaDTO salvar(Artista artista){
+		artr.save(artista);
+		return ArtistaDTO.conversorArtistaDto(artista);
 	}
 	
-	public Artista alterar(UUID id, Artista novoArtista){
-		Artista artista = listarPorId(id);
+	public ArtistaDTO alterar(UUID id, Artista novoArtista){
+		Artista artista = artr.findById(id).get();
 		novoArtista.setIdArtista(artista.getIdArtista());
 		artista = novoArtista;
-		return salvar(artista);
+		salvar(artista);
+		return ArtistaDTO.conversorArtistaDto(artista);
 	}
 	
 	public String deletar(UUID id){
-		artr.delete(listarPorId(id));
+		artr.delete(artr.findById(id).get());
 		return "Artista: "+ id +" Deletado!";
 	}
 
