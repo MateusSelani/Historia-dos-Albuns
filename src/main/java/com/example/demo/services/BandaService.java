@@ -2,7 +2,6 @@ package com.example.demo.services;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,28 +17,30 @@ public class BandaService {
 	IBandaRepository br;
 	
 	public List<BandaDTO> listarTodos() {
-		List<Banda> banda = br.findAll();
-		List<BandaDTO> dto = banda.stream().map(obj -> new BandaDTO(obj)).collect(Collectors.toList());
-		return dto;
+		List<Banda> bandas = br.findAll();
+		return BandaDTO.conversorBandaDto(bandas);
 	}
 	
-	public Banda listarUnico(UUID id) {
-		return br.findById(id).get();
+	public BandaDTO listarUnico(UUID id) {
+		Banda banda = br.findById(id).get();
+		return BandaDTO.conversorBandaDto(banda);
 	}
 	
-	public Banda salvar(Banda nova) {
-		return br.save(nova);
+	public BandaDTO salvar(Banda nova) {
+		Banda banda = br.save(nova);
+		return BandaDTO.conversorBandaDto(banda);
 	}
 	
-	public Banda alterar(UUID id, Banda alterada) {
-		Banda bandaAntiga = listarUnico(id);
+	public BandaDTO alterar(UUID id, Banda alterada) {
+		Banda bandaAntiga = br.findById(id).get();
 		alterada.setIdBanda(bandaAntiga.getIdBanda());
 		bandaAntiga = alterada;
-		return salvar(bandaAntiga);
+		salvar(bandaAntiga);
+		return BandaDTO.conversorBandaDto(bandaAntiga);
 	}
 	
 	public void deletar(UUID id) {
-		 Banda banda = listarUnico(id);
+		Banda banda = br.findById(id).get();
 		br.delete(banda);
 	}
 

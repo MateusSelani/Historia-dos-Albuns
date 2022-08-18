@@ -24,6 +24,18 @@ public class BandaDTO {
 		this.albuns = conversorAlbum(obj);
 	}
 	
+	public static BandaDTO conversorBandaDto(Banda banda) {
+		BandaDTO dto = new BandaDTO(banda);
+		return dto;
+	}
+	
+	public static List<BandaDTO> conversorBandaDto(List<Banda> banda) {
+		List<BandaDTO> dto = banda.stream()
+				.map(obj -> new BandaDTO(obj))
+				.collect(Collectors.toList());
+		return dto;
+	}
+	
 	public List<AlbumDTO> conversorAlbum(Banda banda) {
 		List<AlbumDTO> listaDto = banda.getAlbum()
 				.stream()

@@ -33,19 +33,19 @@ public class BandaController {
 	
 	@ResponseBody
 	@GetMapping("/{idBanda}")
-	public Banda listarBandaId(@PathVariable UUID idBanda) {
+	public BandaDTO listarBandaId(@PathVariable UUID idBanda) {
 		return bs.listarUnico(idBanda);
 	}
 	
 	@ResponseBody
 	@PostMapping
-	public Banda salvarBanda(@RequestBody Banda novaBanda) {
+	public BandaDTO salvarBanda(@RequestBody Banda novaBanda) {
 		return bs.salvar(novaBanda);
 	}
 	
 	@ResponseBody
 	@PutMapping("/{idBanda}")
-	public Banda alterarBanda(@PathVariable UUID idBanda, @RequestBody Banda novaBanda) {
+	public BandaDTO alterarBanda(@PathVariable UUID idBanda, @RequestBody Banda novaBanda) {
 		return bs.alterar(idBanda, novaBanda);
 	}
 	
