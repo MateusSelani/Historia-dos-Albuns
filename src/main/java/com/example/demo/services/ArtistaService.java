@@ -2,10 +2,12 @@ package com.example.demo.services;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.ArtistaDTO;
 import com.example.demo.models.Artista;
 import com.example.demo.repositories.IArtistaRepository;
 
@@ -15,8 +17,10 @@ public class ArtistaService {
 	@Autowired
 	IArtistaRepository artr;
 	
-	public List<Artista> listarTodos(){
-		return artr.findAll();
+	public List<ArtistaDTO> listarTodos(){
+		List<Artista> artista = artr.findAll();
+		List<ArtistaDTO> dto = artista.stream().map(obj -> new ArtistaDTO(obj)).collect(Collectors.toList());
+		return dto;
 	}
 	
 	public Artista listarPorId(UUID id){

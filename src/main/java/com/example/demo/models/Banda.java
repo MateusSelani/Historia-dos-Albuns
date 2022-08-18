@@ -17,16 +17,12 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import lombok.Data;
 
 @Entity
 @Data
 @Table(name = "banda")
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+//@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Banda {
 
 	@Id
@@ -41,7 +37,7 @@ public class Banda {
 	
 	@OneToMany
 	@JoinColumn(name = "id_banda")
-	@JsonManagedReference
+//	@JsonManagedReference
 	private List<Album> album = new ArrayList<Album>();
 	
 	@ManyToMany(mappedBy = "bandas")
