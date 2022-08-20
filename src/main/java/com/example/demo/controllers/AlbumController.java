@@ -33,19 +33,19 @@ public class AlbumController {
 	
 	@ResponseBody
 	@GetMapping("/{idAlbum}")
-	public Album listarAlbumId(@PathVariable UUID idAlbum) {
+	public AlbumDTO listarAlbumId(@PathVariable UUID idAlbum) {
 		return as.listarUnico(idAlbum);
 	}
 	
 	@ResponseBody
 	@PostMapping
-	public Album salvarAlbum(@RequestBody Album novoAlbum) {
+	public AlbumDTO salvarAlbum(@RequestBody Album novoAlbum) {
 		return as.salvar(novoAlbum);
 	}
 	
 	@ResponseBody
 	@PutMapping("/{idAlbum}")
-	public Album alterarAlbum(@PathVariable UUID idAlbum ,@RequestBody Album novoAlbum) {
+	public AlbumDTO alterarAlbum(@PathVariable UUID idAlbum ,@RequestBody Album novoAlbum) {
 		return as.alterar(idAlbum, novoAlbum);
 	}
 	
