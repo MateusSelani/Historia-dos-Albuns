@@ -39,9 +39,10 @@ public class BandaService {
 		return BandaDTO.conversorBandaDto(bandaAntiga);
 	}
 	
-	public void deletar(UUID id) {
+	public String deletar(UUID id) {
 		Banda banda = buscarBandaId(id);
 		br.delete(banda);
+		return "Banda: " + id + " Deletada!";
 	}
 	
 //	metodo interno

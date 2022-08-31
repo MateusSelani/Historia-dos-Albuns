@@ -58,8 +58,8 @@ public class AlbumController {
 	@ResponseBody
 	@DeleteMapping("/{idAlbum}")
 	public ResponseEntity<String> deletarAlbum(@PathVariable UUID idAlbum) {
-		as.deletar(idAlbum);
-		return ResponseEntity.status(HttpStatus.OK).body("Album: " + idAlbum + " Deletado!");
+		String dto = as.deletar(idAlbum);
+		return ResponseEntity.status(HttpStatus.OK).body(dto);
 	}
 	
 }

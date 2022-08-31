@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,33 +29,37 @@ public class BandaController {
 	
 	@ResponseBody
 	@GetMapping
-	public List<BandaDTO> listarBandas() {
-		return bs.listarTodos();
+	public ResponseEntity<List<BandaDTO>> listarBandas() {
+		List<BandaDTO> dto = bs.listarTodos();
+		return ResponseEntity.status(HttpStatus.OK).body(dto);
 	}
 	
 	@ResponseBody
 	@GetMapping("/{idBanda}")
-	public BandaDTO listarBandaId(@PathVariable UUID idBanda) {
-		return bs.listarUnico(idBanda);
+	public ResponseEntity<BandaDTO> listarBandaId(@PathVariable UUID idBanda) {
+		BandaDTO dto = bs.listarUnico(idBanda);
+		return ResponseEntity.status(HttpStatus.OK).body(dto);
 	}
 	
 	@ResponseBody
 	@PostMapping
-	public BandaDTO salvarBanda(@RequestBody Banda novaBanda) {
-		return bs.salvar(novaBanda);
+	public ResponseEntity<BandaDTO> salvarBanda(@RequestBody Banda novaBanda) {
+		BandaDTO dto = bs.salvar(novaBanda);
+		return ResponseEntity.status(HttpStatus.OK).body(dto);
 	}
 	
 	@ResponseBody
 	@PutMapping("/{idBanda}")
-	public BandaDTO alterarBanda(@PathVariable UUID idBanda, @RequestBody Banda novaBanda) {
-		return bs.alterar(idBanda, novaBanda);
+	public ResponseEntity<BandaDTO> alterarBanda(@PathVariable UUID idBanda, @RequestBody Banda novaBanda) {
+		BandaDTO dto = bs.alterar(idBanda, novaBanda);
+		return ResponseEntity.status(HttpStatus.OK).body(dto);
 	}
 	
 	@ResponseBody
 	@DeleteMapping("/{idBanda}")
-	public String deletarBanda(@PathVariable UUID idBanda) {
-		bs.deletar(idBanda);
-		return "Banda: " + idBanda + " Deletada!";
+	public ResponseEntity<String> deletarBanda(@PathVariable UUID idBanda) {
+		String dto = bs.deletar(idBanda);
+		return ResponseEntity.status(HttpStatus.OK).body(dto);
 	}
 
 }

@@ -39,9 +39,10 @@ public class AlbumService {
 		return AlbumDTO.conversorAlbumDto(albumAntigo);
 	}
 	
-	public void deletar(UUID id) {
+	public String deletar(UUID id) {
 		Album album = buscarAlbumId(id);
 		ar.delete(album);
+		return "Album: " + id + " Deletado!";
 	}
 	
 //	metodo interno
