@@ -45,7 +45,7 @@ public class ArtistaController {
 	@PostMapping
 	public ResponseEntity<ArtistaDTO> salvarArtista(@RequestBody Artista artista) {
 		ArtistaDTO dto = arts.salvar(artista);
-		return ResponseEntity.status(HttpStatus.OK).body(dto);
+		return ResponseEntity.status(HttpStatus.CREATED).body(dto);
 	}
 	
 	@ResponseBody

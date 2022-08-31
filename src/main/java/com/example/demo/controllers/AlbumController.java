@@ -45,7 +45,7 @@ public class AlbumController {
 	@PostMapping
 	public ResponseEntity<AlbumDTO> salvarAlbum(@RequestBody Album novoAlbum) {
 		AlbumDTO dto = as.salvar(novoAlbum); 
-		return ResponseEntity.status(HttpStatus.OK).body(dto);
+		return ResponseEntity.status(HttpStatus.CREATED).body(dto);
 	}
 	
 	@ResponseBody

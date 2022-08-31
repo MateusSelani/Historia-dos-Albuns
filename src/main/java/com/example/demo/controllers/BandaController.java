@@ -45,7 +45,7 @@ public class BandaController {
 	@PostMapping
 	public ResponseEntity<BandaDTO> salvarBanda(@RequestBody Banda novaBanda) {
 		BandaDTO dto = bs.salvar(novaBanda);
-		return ResponseEntity.status(HttpStatus.OK).body(dto);
+		return ResponseEntity.status(HttpStatus.CREATED).body(dto);
 	}
 	
 	@ResponseBody
