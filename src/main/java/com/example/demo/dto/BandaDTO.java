@@ -20,8 +20,8 @@ public class BandaDTO {
 	
 	public BandaDTO(Banda obj) {
 		this.nomeBanda = obj.getNomeBanda();
-		this.artista = conversorArtista(obj);
-		this.albuns = conversorAlbum(obj);
+		this.artista = conversorArtistaDto(obj);
+		this.albuns = conversorAlbumDto(obj);
 	}
 	
 	public static BandaDTO conversorBandaDto(Banda banda) {
@@ -36,7 +36,7 @@ public class BandaDTO {
 		return dto;
 	}
 	
-	public List<AlbumDTO> conversorAlbum(Banda banda) {
+	private List<AlbumDTO> conversorAlbumDto(Banda banda) {
 		List<AlbumDTO> listaDto = banda.getAlbum()
 				.stream()
 				.map(dto -> new AlbumDTO(dto))
@@ -44,7 +44,7 @@ public class BandaDTO {
 		return listaDto;
 	}
 	
-	public List<ArtistaDTO> conversorArtista(Banda banda) {
+	private List<ArtistaDTO> conversorArtistaDto(Banda banda) {
 		List<ArtistaDTO> listaDto = banda.getArtistas()
 				.stream()
 				.map(dto -> new ArtistaDTO(dto))

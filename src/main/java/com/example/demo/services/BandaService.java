@@ -22,7 +22,7 @@ public class BandaService {
 	}
 	
 	public BandaDTO listarUnico(UUID id) {
-		Banda banda = br.findById(id).get();
+		Banda banda = buscarBandaId(id);
 		return BandaDTO.conversorBandaDto(banda);
 	}
 	
@@ -32,7 +32,7 @@ public class BandaService {
 	}
 	
 	public BandaDTO alterar(UUID id, Banda alterada) {
-		Banda bandaAntiga = br.findById(id).get();
+		Banda bandaAntiga = buscarBandaId(id);
 		alterada.setIdBanda(bandaAntiga.getIdBanda());
 		bandaAntiga = alterada;
 		salvar(bandaAntiga);
@@ -40,8 +40,13 @@ public class BandaService {
 	}
 	
 	public void deletar(UUID id) {
-		Banda banda = br.findById(id).get();
+		Banda banda = buscarBandaId(id);
 		br.delete(banda);
+	}
+	
+//	metodo interno
+	private Banda buscarBandaId(UUID uuid) {
+		return br.findById(uuid).get();
 	}
 
 }

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,33 +29,37 @@ public class AlbumController {
 	
 	@ResponseBody
 	@GetMapping
-	public List<AlbumDTO> listarAlbuns() {
-		return as.listarTodos();
+	public ResponseEntity<List<AlbumDTO>> listarAlbuns() {
+		List<AlbumDTO> dto = as.listarTodos();
+		return ResponseEntity.status(HttpStatus.OK).body(dto);
 	}
 	
 	@ResponseBody
 	@GetMapping("/{idAlbum}")
-	public AlbumDTO listarAlbumId(@PathVariable UUID idAlbum) {
-		return as.listarUnico(idAlbum);
+	public ResponseEntity<AlbumDTO> listarAlbumId(@PathVariable UUID idAlbum) {
+		AlbumDTO dto = as.listarUnico(idAlbum);
+		return ResponseEntity.status(HttpStatus.OK).body(dto);
 	}
 	
 	@ResponseBody
 	@PostMapping
-	public AlbumDTO salvarAlbum(@RequestBody Album novoAlbum) {
-		return as.salvar(novoAlbum);
+	public ResponseEntity<AlbumDTO> salvarAlbum(@RequestBody Album novoAlbum) {
+		AlbumDTO dto = as.salvar(novoAlbum); 
+		return ResponseEntity.status(HttpStatus.OK).body(dto);
 	}
 	
 	@ResponseBody
 	@PutMapping("/{idAlbum}")
-	public AlbumDTO alterarAlbum(@PathVariable UUID idAlbum ,@RequestBody Album novoAlbum) {
-		return as.alterar(idAlbum, novoAlbum);
+	public ResponseEntity<AlbumDTO> alterarAlbum(@PathVariable UUID idAlbum, @RequestBody Album novoAlbum) {
+		AlbumDTO dto = as.alterar(idAlbum, novoAlbum);
+		return ResponseEntity.status(HttpStatus.OK).body(dto);
 	}
 	
 	@ResponseBody
 	@DeleteMapping("/{idAlbum}")
-	public String deletarAlbum(@PathVariable UUID idAlbum) {
+	public ResponseEntity<String> deletarAlbum(@PathVariable UUID idAlbum) {
 		as.deletar(idAlbum);
-		return "Album: " + idAlbum + " Deletado!";
+		return ResponseEntity.status(HttpStatus.OK).body("Album: " + idAlbum + " Deletado!");
 	}
 	
 }

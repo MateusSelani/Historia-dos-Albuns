@@ -22,7 +22,7 @@ public class ArtistaService {
 	}
 	
 	public ArtistaDTO listarPorId(UUID id){
-		Artista artista = artr.findById(id).get();
+		Artista artista = buscarArtistaId(id);
 		return ArtistaDTO.conversorArtistaDto(artista);
 	}
 	
@@ -32,7 +32,7 @@ public class ArtistaService {
 	}
 	
 	public ArtistaDTO alterar(UUID id, Artista novoArtista){
-		Artista artista = artr.findById(id).get();
+		Artista artista = buscarArtistaId(id);
 		novoArtista.setIdArtista(artista.getIdArtista());
 		artista = novoArtista;
 		salvar(artista);
@@ -40,8 +40,13 @@ public class ArtistaService {
 	}
 	
 	public String deletar(UUID id){
-		artr.delete(artr.findById(id).get());
+		artr.delete(buscarArtistaId(id));
 		return "Artista: "+ id +" Deletado!";
+	}
+	
+//	metodo interno
+	private Artista buscarArtistaId(UUID uuid) {
+		return artr.findById(uuid).get();
 	}
 
 	

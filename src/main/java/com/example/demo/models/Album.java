@@ -28,7 +28,7 @@ public class Album {
 	@Column(length = 100)
 	private String nomeAlbum;
 	
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dataLancamento;
 	
 	@Column(length = 10)

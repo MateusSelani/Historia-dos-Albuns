@@ -18,12 +18,11 @@ public class AlbumService {
 	
 	public List<AlbumDTO> listarTodos() {
 		List<Album> albuns = ar.findAll();
-		List<AlbumDTO> dto = AlbumDTO.conversorAlbumDto(albuns);
-		return dto;
+		return AlbumDTO.conversorAlbumDto(albuns);
 	}
 	
 	public AlbumDTO listarUnico(UUID id) {
-		Album album = ar.findById(id).get();
+		Album album = buscarAlbumId(id);
 		return AlbumDTO.conversorAlbumDto(album);
 	}
 	
@@ -33,7 +32,7 @@ public class AlbumService {
 	}
 	
 	public AlbumDTO alterar(UUID id, Album alterado) {
-		Album albumAntigo = ar.findById(id).get();
+		Album albumAntigo = buscarAlbumId(id);
 		alterado.setIdAlbum(albumAntigo.getIdAlbum());
 		albumAntigo = alterado;
 		salvar(albumAntigo);
@@ -41,8 +40,13 @@ public class AlbumService {
 	}
 	
 	public void deletar(UUID id) {
-		Album album = ar.findById(id).get();
+		Album album = buscarAlbumId(id);
 		ar.delete(album);
+	}
+	
+//	metodo interno
+	private Album buscarAlbumId(UUID uuid) {
+		return ar.findById(uuid).get();
 	}
 
 }
