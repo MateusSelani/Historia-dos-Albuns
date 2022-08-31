@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,32 +29,37 @@ public class ArtistaController {
 	
 	@ResponseBody
 	@GetMapping
-	public List<ArtistaDTO> listarArtistas(){
-		return arts.listarTodos();
+	public ResponseEntity<List<ArtistaDTO>> listarArtistas(){
+		List<ArtistaDTO> dto = arts.listarTodos();
+		return ResponseEntity.status(HttpStatus.OK).body(dto);
 	}
 	
 	@ResponseBody
 	@GetMapping("/{idArtista}")
-	public ArtistaDTO listarArtista(@PathVariable UUID idArtista) {
-		return arts.listarPorId(idArtista);
+	public ResponseEntity<ArtistaDTO> listarArtista(@PathVariable UUID idArtista) {
+		ArtistaDTO dto = arts.listarPorId(idArtista);
+		return ResponseEntity.status(HttpStatus.OK).body(dto);
 	}
 	
 	@ResponseBody
 	@PostMapping
-	public ArtistaDTO salvarArtista(@RequestBody Artista artista) {
-		return arts.salvar(artista);
+	public ResponseEntity<ArtistaDTO> salvarArtista(@RequestBody Artista artista) {
+		ArtistaDTO dto = arts.salvar(artista);
+		return ResponseEntity.status(HttpStatus.OK).body(dto);
 	}
 	
 	@ResponseBody
 	@PutMapping("/{idArtista}")
-	public ArtistaDTO alterarArtista(@PathVariable UUID idArtista, @RequestBody Artista artista) {
-		return arts.alterar(idArtista, artista);
+	public ResponseEntity<ArtistaDTO> alterarArtista(@PathVariable UUID idArtista, @RequestBody Artista artista) {
+		ArtistaDTO dto = arts.alterar(idArtista, artista);
+		return ResponseEntity.status(HttpStatus.OK).body(dto);
 	}
 	
 	@ResponseBody
 	@DeleteMapping("/{idArtista}")
-	public String deletarArtista(@PathVariable UUID idArtista) {
-		return arts.deletar(idArtista);
+	public ResponseEntity<String> deletarArtista(@PathVariable UUID idArtista) {
+		String dto = arts.deletar(idArtista);
+		return ResponseEntity.status(HttpStatus.OK).body(dto);
 	}
 
 }
