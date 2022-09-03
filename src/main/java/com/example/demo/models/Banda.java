@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,11 +36,11 @@ public class Banda {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dataFundacao;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "id_banda")
 //	@JsonManagedReference
 	private List<Album> album = new ArrayList<Album>();
 	
-	@ManyToMany(mappedBy = "bandas")
+	@ManyToMany(mappedBy = "bandas", cascade = CascadeType.REMOVE)
 	private List<Artista> artistas = new ArrayList<Artista>();
 }
