@@ -42,7 +42,7 @@ public class BandaService {
 	public String deletar(UUID id) {
 		Banda banda = buscarBandaId(id);
 		br.delete(banda);
-		return "Banda: " + id + " Deletada!";
+		return "Banda: " + banda.getNomeBanda() + " Deletada!";
 	}
 	
 //	metodo interno

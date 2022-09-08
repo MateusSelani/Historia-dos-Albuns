@@ -16,14 +16,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import lombok.Data;
 
 @Entity
 @Data
 @Table(name = "banda")
-//@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Banda {
 
 	@Id
@@ -33,12 +30,10 @@ public class Banda {
 	@Column(length = 100)
 	private String nomeBanda;
 	
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dataFundacao;
 	
 	@OneToMany(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "id_banda")
-//	@JsonManagedReference
 	private List<Album> album = new ArrayList<Album>();
 	
 	@ManyToMany(mappedBy = "bandas", cascade = CascadeType.REMOVE)

@@ -42,7 +42,7 @@ public class AlbumService {
 	public String deletar(UUID id) {
 		Album album = buscarAlbumId(id);
 		ar.delete(album);
-		return "Album: " + id + " Deletado!";
+		return "Album: " + album.getNomeAlbum() + " Deletado!";
 	}
 	
 //	metodo interno

@@ -12,8 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import lombok.Data;
 
 @Entity
@@ -28,7 +26,6 @@ public class Album {
 	@Column(length = 100)
 	private String nomeAlbum;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dataLancamento;
 	
 	@Column(length = 10)
@@ -38,7 +35,6 @@ public class Album {
 	
 	@ManyToOne(targetEntity = Banda.class)
 	@JoinColumn(name = "id_banda")
-//	@JsonBackReference
 	private Banda banda;
 
 }

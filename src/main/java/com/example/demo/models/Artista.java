@@ -15,14 +15,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import lombok.Data;
 
 @Entity
 @Data
 @Table(name = "artista")
-//@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Artista {
 
 	@Id
@@ -32,7 +29,6 @@ public class Artista {
 	@Column(length = 100)
 	private String nomeArtista;
 	
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dataNascimento;
 	
 	@Column(length = 100)

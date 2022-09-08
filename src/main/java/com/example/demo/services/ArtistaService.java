@@ -40,8 +40,9 @@ public class ArtistaService {
 	}
 	
 	public String deletar(UUID id){
-		artr.delete(buscarArtistaId(id));
-		return "Artista: "+ id +" Deletado!";
+		Artista artista = buscarArtistaId(id);
+		artr.delete(artista);
+		return "Artista: "+ artista.getNomeArtista() +" Deletado!";
 	}
 	
 //	metodo interno
