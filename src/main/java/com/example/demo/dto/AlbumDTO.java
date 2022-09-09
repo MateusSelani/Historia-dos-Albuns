@@ -17,7 +17,7 @@ public class AlbumDTO {
 
 	private String nomeAlbum;
 	private Date dataLancamento;
-	private double duracaoAlbum;
+	private Date duracaoAlbum;
 	
 	public AlbumDTO(Album obj) {
 		this.nomeAlbum = obj.getNomeAlbum();

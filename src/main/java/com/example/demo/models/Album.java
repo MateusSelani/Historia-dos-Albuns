@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import java.sql.Time;
 import java.util.Date;
 import java.util.UUID;
 
@@ -28,9 +29,9 @@ public class Album {
 	
 	private Date dataLancamento;
 	
-	@Column(length = 10)
-	private double duracaoAlbum;
+	private Time duracaoAlbum;
 	
+	@Column(length = 255)
 	private String descricaoAlbum;
 	
 	@ManyToOne(targetEntity = Banda.class)
