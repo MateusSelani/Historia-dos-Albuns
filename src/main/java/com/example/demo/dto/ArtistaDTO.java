@@ -19,12 +19,14 @@ public class ArtistaDTO {
 	private Date dataNascimento;
 	private String funcao;
 	private String paisArtista;
+	private String imgUrl;
 	
 	public ArtistaDTO(Artista obj) {
 		this.nomeArtista = obj.getNomeArtista();
 		this.dataNascimento = obj.getDataNascimento();
 		this.funcao = obj.getFuncao();
 		this.paisArtista = obj.getPaisArtista();
+		this.imgUrl = obj.getImgUrl();
 	}
 	
 	public static ArtistaDTO conversorArtistaDto(Artista artista){

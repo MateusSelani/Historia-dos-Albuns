@@ -28,8 +28,7 @@ public class AlbumService {
 	}
 	
 	public AlbumDTO salvar(Album novo) {
-		Date now = new Date();
-		novo.setDataCadastro(now);
+		novo.setDataCadastro(new Date());
 		Album album = ar.save(novo);
 		return AlbumDTO.conversorAlbumDto(album);
 	}

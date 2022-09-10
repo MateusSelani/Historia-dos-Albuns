@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,6 +28,7 @@ public class BandaService {
 	}
 	
 	public BandaDTO salvar(Banda nova) {
+		nova.setDataCadastro(new Date());
 		Banda banda = br.save(nova);
 		return BandaDTO.conversorBandaDto(banda);
 	}

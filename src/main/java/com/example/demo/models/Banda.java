@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Entity
@@ -31,6 +33,11 @@ public class Banda {
 	private String nomeBanda;
 	
 	private Date dataFundacao;
+	
+	private String imgUrl;
+	
+	@JsonIgnore
+	private Date dataCadastro;
 	
 	@OneToMany(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "id_banda")

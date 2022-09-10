@@ -15,11 +15,13 @@ import lombok.NoArgsConstructor;
 public class BandaDTO {
 
 	private String nomeBanda;
+	private String imgUrl;
 	private List<AlbumDTO> albuns;
 	private List<ArtistaDTO> artista;
 	
 	public BandaDTO(Banda obj) {
 		this.nomeBanda = obj.getNomeBanda();
+		this.imgUrl = obj.getImgUrl();
 		this.artista = conversorArtistaDto(obj);
 		this.albuns = conversorAlbumDto(obj);
 	}

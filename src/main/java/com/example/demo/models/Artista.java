@@ -15,6 +15,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Entity
@@ -36,6 +38,11 @@ public class Artista {
 	
 	@Column(length = 100)
 	private String paisArtista;
+	
+	private String imgUrl;
+	
+	@JsonIgnore
+	private Date dataCadastro;
 	
 	@ManyToMany(targetEntity = Banda.class)
 	@JoinTable(name="banda_artista",

@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,6 +28,7 @@ public class ArtistaService {
 	}
 	
 	public ArtistaDTO salvar(Artista artista){
+		artista.setDataCadastro(new Date());
 		artr.save(artista);
 		return ArtistaDTO.conversorArtistaDto(artista);
 	}
