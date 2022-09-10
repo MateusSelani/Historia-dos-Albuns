@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,6 +28,8 @@ public class AlbumService {
 	}
 	
 	public AlbumDTO salvar(Album novo) {
+		Date now = new Date();
+		novo.setDataCadastro(now);
 		Album album = ar.save(novo);
 		return AlbumDTO.conversorAlbumDto(album);
 	}

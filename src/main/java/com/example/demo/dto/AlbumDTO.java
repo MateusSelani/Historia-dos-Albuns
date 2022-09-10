@@ -18,11 +18,13 @@ public class AlbumDTO {
 	private String nomeAlbum;
 	private Date dataLancamento;
 	private Date duracaoAlbum;
+	private String imgUrl;
 	
 	public AlbumDTO(Album obj) {
 		this.nomeAlbum = obj.getNomeAlbum();
 		this.dataLancamento = obj.getDataLancamento();
 		this.duracaoAlbum = obj.getDuracaoAlbum();
+		this.imgUrl = obj.getImgUrl();
 	}
 	
 	public static AlbumDTO conversorAlbumDto(Album album){

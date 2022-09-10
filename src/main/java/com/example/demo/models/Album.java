@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Entity
@@ -33,6 +35,11 @@ public class Album {
 	
 	@Column(length = 255)
 	private String descricaoAlbum;
+	
+	private String imgUrl;
+	
+	@JsonIgnore
+	private Date dataCadastro;
 	
 	@ManyToOne(targetEntity = Banda.class)
 	@JoinColumn(name = "id_banda")
