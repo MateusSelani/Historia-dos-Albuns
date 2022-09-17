@@ -27,10 +27,10 @@ public class AlbumService {
 		return AlbumDTO.conversorAlbumDto(album);
 	}
 	
-	public AlbumDTO salvar(Album novo) {
-		novo.setDataCadastro(new Date());
-		Album album = ar.save(novo);
-		return AlbumDTO.conversorAlbumDto(album);
+	public AlbumDTO salvar(Album album) {
+		album.setDataCadastro(new Date());
+		Album novo = ar.save(album);
+		return AlbumDTO.conversorAlbumDto(novo);
 	}
 	
 	public AlbumDTO alterar(UUID id, Album alterado) {
