@@ -27,10 +27,10 @@ public class BandaService {
 		return BandaDTO.conversorBandaDto(banda);
 	}
 	
-	public BandaDTO salvar(Banda nova) {
-		nova.setDataCadastro(new Date());
-		Banda banda = br.save(nova);
-		return BandaDTO.conversorBandaDto(banda);
+	public BandaDTO salvar(Banda banda) {
+		banda.setDataCadastro(new Date());
+		Banda nova = br.save(banda);
+		return BandaDTO.conversorBandaDto(nova);
 	}
 	
 	public BandaDTO alterar(UUID id, Banda alterada) {
