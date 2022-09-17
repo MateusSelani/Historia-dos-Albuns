@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static com.example.demo.dto.ArtistaDTO.*;
 import com.example.demo.dto.ArtistaDTO;
 import com.example.demo.models.Artista;
 import com.example.demo.repositories.IArtistaRepository;
@@ -19,18 +20,18 @@ public class ArtistaService {
 	
 	public List<ArtistaDTO> listarTodos(){
 		List<Artista> artistas = artr.findAll();
-		return ArtistaDTO.conversorArtistaDto(artistas);
+		return conversorArtistaDto(artistas);
 	}
 	
 	public ArtistaDTO listarPorId(UUID id){
 		Artista artista = buscarArtistaId(id);
-		return ArtistaDTO.conversorArtistaDto(artista);
+		return conversorArtistaDto(artista);
 	}
 	
 	public ArtistaDTO salvar(Artista artista){
 		artista.setDataCadastro(new Date());
 		artr.save(artista);
-		return ArtistaDTO.conversorArtistaDto(artista);
+		return conversorArtistaDto(artista);
 	}
 	
 	public ArtistaDTO alterar(UUID id, Artista novoArtista){
@@ -38,7 +39,7 @@ public class ArtistaService {
 		novoArtista.setIdArtista(artista.getIdArtista());
 		artista = novoArtista;
 		salvar(artista);
-		return ArtistaDTO.conversorArtistaDto(artista);
+		return conversorArtistaDto(artista);
 	}
 	
 	public String deletar(UUID id){

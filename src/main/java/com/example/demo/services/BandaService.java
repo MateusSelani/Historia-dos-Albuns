@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static com.example.demo.dto.BandaDTO.*;
 import com.example.demo.dto.BandaDTO;
 import com.example.demo.models.Banda;
 import com.example.demo.repositories.IBandaRepository;
@@ -19,18 +20,18 @@ public class BandaService {
 	
 	public List<BandaDTO> listarTodos() {
 		List<Banda> bandas = br.findAll();
-		return BandaDTO.conversorBandaDto(bandas);
+		return conversorBandaDto(bandas);
 	}
 	
 	public BandaDTO listarUnico(UUID id) {
 		Banda banda = buscarBandaId(id);
-		return BandaDTO.conversorBandaDto(banda);
+		return conversorBandaDto(banda);
 	}
 	
 	public BandaDTO salvar(Banda banda) {
 		banda.setDataCadastro(new Date());
 		Banda nova = br.save(banda);
-		return BandaDTO.conversorBandaDto(nova);
+		return conversorBandaDto(nova);
 	}
 	
 	public BandaDTO alterar(UUID id, Banda alterada) {
@@ -38,7 +39,7 @@ public class BandaService {
 		alterada.setIdBanda(bandaAntiga.getIdBanda());
 		bandaAntiga = alterada;
 		salvar(bandaAntiga);
-		return BandaDTO.conversorBandaDto(bandaAntiga);
+		return conversorBandaDto(bandaAntiga);
 	}
 	
 	public String deletar(UUID id) {

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.AlbumDTO;
+import static com.example.demo.dto.AlbumDTO.*;
 import com.example.demo.models.Album;
 import com.example.demo.repositories.IAlbumRepository;
 
@@ -19,18 +20,18 @@ public class AlbumService {
 	
 	public List<AlbumDTO> listarTodos() {
 		List<Album> albuns = ar.findAll();
-		return AlbumDTO.conversorAlbumDto(albuns);
+		return conversorAlbumDto(albuns);
 	}
 	
 	public AlbumDTO listarUnico(UUID id) {
 		Album album = buscarAlbumId(id);
-		return AlbumDTO.conversorAlbumDto(album);
+		return conversorAlbumDto(album);
 	}
 	
 	public AlbumDTO salvar(Album album) {
 		album.setDataCadastro(new Date());
 		Album novo = ar.save(album);
-		return AlbumDTO.conversorAlbumDto(novo);
+		return conversorAlbumDto(novo);
 	}
 	
 	public AlbumDTO alterar(UUID id, Album alterado) {
@@ -38,7 +39,7 @@ public class AlbumService {
 		alterado.setIdAlbum(albumAntigo.getIdAlbum());
 		albumAntigo = alterado;
 		salvar(albumAntigo);
-		return AlbumDTO.conversorAlbumDto(albumAntigo);
+		return conversorAlbumDto(albumAntigo);
 	}
 	
 	public String deletar(UUID id) {
