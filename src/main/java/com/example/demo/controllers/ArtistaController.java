@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import static org.springframework.http.ResponseEntity.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,35 +32,35 @@ public class ArtistaController {
 	@GetMapping
 	public ResponseEntity<List<ArtistaDTO>> listarArtistas(){
 		List<ArtistaDTO> dto = arts.listarTodos();
-		return ResponseEntity.status(HttpStatus.OK).body(dto);
+		return status(HttpStatus.OK).body(dto);
 	}
 	
 	@ResponseBody
 	@GetMapping("/{idArtista}")
 	public ResponseEntity<ArtistaDTO> listarArtista(@PathVariable UUID idArtista) {
 		ArtistaDTO dto = arts.listarPorId(idArtista);
-		return ResponseEntity.status(HttpStatus.OK).body(dto);
+		return status(HttpStatus.OK).body(dto);
 	}
 	
 	@ResponseBody
 	@PostMapping
 	public ResponseEntity<ArtistaDTO> salvarArtista(@RequestBody Artista artista) {
 		ArtistaDTO dto = arts.salvar(artista);
-		return ResponseEntity.status(HttpStatus.CREATED).body(dto);
+		return status(HttpStatus.CREATED).body(dto);
 	}
 	
 	@ResponseBody
 	@PutMapping("/{idArtista}")
 	public ResponseEntity<ArtistaDTO> alterarArtista(@PathVariable UUID idArtista, @RequestBody Artista artista) {
 		ArtistaDTO dto = arts.alterar(idArtista, artista);
-		return ResponseEntity.status(HttpStatus.OK).body(dto);
+		return status(HttpStatus.OK).body(dto);
 	}
 	
 	@ResponseBody
 	@DeleteMapping("/{idArtista}")
 	public ResponseEntity<String> deletarArtista(@PathVariable UUID idArtista) {
 		String dto = arts.deletar(idArtista);
-		return ResponseEntity.status(HttpStatus.OK).body(dto);
+		return status(HttpStatus.OK).body(dto);
 	}
 
 }

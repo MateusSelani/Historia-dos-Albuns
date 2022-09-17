@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import static org.springframework.http.ResponseEntity.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,35 +32,35 @@ public class BandaController {
 	@GetMapping
 	public ResponseEntity<List<BandaDTO>> listarBandas() {
 		List<BandaDTO> dto = bs.listarTodos();
-		return ResponseEntity.status(HttpStatus.OK).body(dto);
+		return status(HttpStatus.OK).body(dto);
 	}
 	
 	@ResponseBody
 	@GetMapping("/{idBanda}")
 	public ResponseEntity<BandaDTO> listarBandaId(@PathVariable UUID idBanda) {
 		BandaDTO dto = bs.listarUnico(idBanda);
-		return ResponseEntity.status(HttpStatus.OK).body(dto);
+		return status(HttpStatus.OK).body(dto);
 	}
 	
 	@ResponseBody
 	@PostMapping
 	public ResponseEntity<BandaDTO> salvarBanda(@RequestBody Banda novaBanda) {
 		BandaDTO dto = bs.salvar(novaBanda);
-		return ResponseEntity.status(HttpStatus.CREATED).body(dto);
+		return status(HttpStatus.CREATED).body(dto);
 	}
 	
 	@ResponseBody
 	@PutMapping("/{idBanda}")
 	public ResponseEntity<BandaDTO> alterarBanda(@PathVariable UUID idBanda, @RequestBody Banda novaBanda) {
 		BandaDTO dto = bs.alterar(idBanda, novaBanda);
-		return ResponseEntity.status(HttpStatus.OK).body(dto);
+		return status(HttpStatus.OK).body(dto);
 	}
 	
 	@ResponseBody
 	@DeleteMapping("/{idBanda}")
 	public ResponseEntity<String> deletarBanda(@PathVariable UUID idBanda) {
 		String dto = bs.deletar(idBanda);
-		return ResponseEntity.status(HttpStatus.OK).body(dto);
+		return status(HttpStatus.OK).body(dto);
 	}
 
 }

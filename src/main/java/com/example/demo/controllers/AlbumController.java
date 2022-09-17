@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import static org.springframework.http.ResponseEntity.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,35 +32,35 @@ public class AlbumController {
 	@GetMapping
 	public ResponseEntity<List<AlbumDTO>> listarAlbuns() {
 		List<AlbumDTO> dto = as.listarTodos();
-		return ResponseEntity.status(HttpStatus.OK).body(dto);
+		return status(HttpStatus.OK).body(dto);
 	}
 	
 	@ResponseBody
 	@GetMapping("/{idAlbum}")
 	public ResponseEntity<AlbumDTO> listarAlbumId(@PathVariable UUID idAlbum) {
 		AlbumDTO dto = as.listarUnico(idAlbum);
-		return ResponseEntity.status(HttpStatus.OK).body(dto);
+		return status(HttpStatus.OK).body(dto);
 	}
 	
 	@ResponseBody
 	@PostMapping
 	public ResponseEntity<AlbumDTO> salvarAlbum(@RequestBody Album novoAlbum) {
 		AlbumDTO dto = as.salvar(novoAlbum); 
-		return ResponseEntity.status(HttpStatus.CREATED).body(dto);
+		return status(HttpStatus.CREATED).body(dto);
 	}
 	
 	@ResponseBody
 	@PutMapping("/{idAlbum}")
 	public ResponseEntity<AlbumDTO> alterarAlbum(@PathVariable UUID idAlbum, @RequestBody Album novoAlbum) {
 		AlbumDTO dto = as.alterar(idAlbum, novoAlbum);
-		return ResponseEntity.status(HttpStatus.OK).body(dto);
+		return status(HttpStatus.OK).body(dto);
 	}
 	
 	@ResponseBody
 	@DeleteMapping("/{idAlbum}")
 	public ResponseEntity<String> deletarAlbum(@PathVariable UUID idAlbum) {
 		String dto = as.deletar(idAlbum);
-		return ResponseEntity.status(HttpStatus.OK).body(dto);
+		return status(HttpStatus.OK).body(dto);
 	}
 	
 }
